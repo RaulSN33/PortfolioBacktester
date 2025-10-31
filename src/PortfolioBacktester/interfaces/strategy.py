@@ -85,6 +85,59 @@ class StrategyBacktest(metaclass=abc.ABCMeta):
         ]
         self.portfolio_returns.name = 'strategy_returns'
 
+    # def index_backtesting_v3(kn_weights_df, price_data, effective_rebalance_dates):
+    # 
+    #     price_data = drop_mostly_null_rows(price_data)
+    #     effective_rebalance_dates = [
+    #         i for
+    #         i in
+    #         effective_rebalance_dates if
+    #         (i >= kn_weights_df.index[0]) and (i <= kn_weights_df.index[-1])
+    #     ]
+    #     kn_weights_df.index = effective_rebalance_dates
+    # 
+    #     dict_periodic_price_data = {}
+    #     list_periodic_port_value = []
+    #     dict_periodic_value_ps_in_port = {}
+    #     n_rebalance_dates = len(effective_rebalance_dates)
+    #     # ---------------
+    #     for i in range(n_rebalance_dates):
+    #         try:
+    #             date = effective_rebalance_dates[i]
+    #             next_date = effective_rebalance_dates[i + 1]
+    #             dict_periodic_price_data[date] = price_data.loc[date:next_date]
+    #             if i == n_rebalance_dates:
+    #                 dict_periodic_price_data[date] = dict_periodic_price_data[date]
+    #             else:
+    #                 dict_periodic_price_data[date] = dict_periodic_price_data[date].iloc[:-1]
+    # 
+    #         except:
+    #             dict_periodic_price_data[date] = price_data.loc[date:]
+    #         # -----------------
+    #         # This will give you theta
+    #         if i == 0:
+    #             rebalance_weights = kn_weights_df.loc[date]
+    #         else:
+    #             rebalance_weights = kn_weights_df.loc[date] * final_periodic_port_value
+    # 
+    #         # rebalance_weights = kn_weights_df.loc[date]
+    #         price_rebal_date = price_data.loc[date]
+    #         num_shares = rebalance_weights / price_rebal_date
+    # 
+    #         value_ps_in_port = num_shares.mul(dict_periodic_price_data[date], axis=0)
+    #         dict_periodic_value_ps_in_port[date] = value_ps_in_port
+    #         total_periodic_port_value = value_ps_in_port.sum(axis=1)
+    #         list_periodic_port_value.append(total_periodic_port_value)
+    #         # final_val_i2 = ind_port2.sum(axis=1)
+    #         final_periodic_port_value = total_periodic_port_value.iloc[-1]
+    # 
+    #     total_port_ts = pd.concat(list_periodic_port_value)
+    # 
+    #     portfolio_daily_returns = total_port_ts.pct_change()
+    #     portfolio_daily_weights = pd.DataFrame()
+    # 
+    #     return portfolio_daily_returns, portfolio_daily_weights
+
     def _reweight_daily_weights(self, df):
         """
         Reweight the daily weights of the portfolio.
