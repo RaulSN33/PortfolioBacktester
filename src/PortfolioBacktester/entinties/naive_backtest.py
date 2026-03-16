@@ -1,8 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from src.PortfolioBacktester.interfaces import StrategyBacktest
-from src.PortfolioBacktester.modules.performance_functions import summary_stats
+from PortfolioBacktester.interfaces import StrategyBacktest
+from PortfolioBacktester.modules.performance_functions import summary_stats
 
 
 class NaiveBacktest(StrategyBacktest):
