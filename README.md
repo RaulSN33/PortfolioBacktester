@@ -22,21 +22,21 @@ At each rebalancing date, the algorithm sets the portfolio weights to the values
 
 #### `signals_df` — Weights DataFrame *(required)*
 
-A `pd.DataFrame` where:
-- **Index**: asset identifiers (e.g., ticker symbols)
-- **Columns**: rebalancing dates as `datetime` objects
-- **Values**: portfolio weights at each rebalancing date
+A `pd.DataFrame` with the following structure:
+- **Index** (rows): asset identifiers (e.g., ticker symbols)
+- **Columns**: rebalancing dates as `datetime` objects, one per rebalancing event
+- **Values**: portfolio weight for each asset on each rebalancing date
 
-Each column represents a rebalancing event. The weights in that column are applied from that date until the next rebalancing date. Weights do not need to sum to 1 — long-short and leveraged portfolios are supported by simply providing the appropriate signed or >1 weights.
+Each column is a rebalancing date. The weights defined in that column are applied starting on that date and drift naturally until the next rebalancing date. Weights do not need to sum to 1 — long-short and leveraged portfolios are supported by simply providing the appropriate signed or >1 weights.
 
-Example structure:
+Example structure (assets as rows, rebalancing dates as columns):
 
 ```
-            2017-06-08  2017-09-11  2018-01-31  ...
-XLB              0.00        0.00        0.00
-XLE              1.00        1.00        0.00
-XLF              0.00        0.00        0.00
-XLK              0.00        0.00        0.00
+       2017-06-08  2017-09-11  2018-01-31  ...
+XLB          0.00        0.00        0.00
+XLE          1.00        1.00        0.00
+XLF          0.00        0.00        0.00
+XLK          0.00        0.00        0.00
 ...
 ```
 
