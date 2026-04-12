@@ -5,7 +5,7 @@ A Python library for backtesting portfolio strategies using historical price dat
 ## Installation
 
 ```bash
-pip install PortfolioBacktester
+pip install git+https://github.com/RaulSN33/PortfolioBacktester.git@main
 ```
 
 ## NaiveBacktest
